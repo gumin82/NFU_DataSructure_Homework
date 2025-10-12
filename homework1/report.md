@@ -1,39 +1,82 @@
 # 41343133
 作業一
-
+## problem1 Ackermann's Function
 ## 解題說明
 
-本題要求實現一個遞迴函式，計算從 $1$ 到 $n$ 的連加總和。
+Ackermann 函數是一個典型的遞迴函數本題要求實作遞迴版本與非遞迴版本。
 
 ### 解題策略
 
-1. 使用遞迴函式將問題拆解為更小的子問題：
-   $$\Sigma(n) = n + \Sigma(n-1)$$
-2. 當 $n \leq 1$ 時，返回 $n$ 作為遞迴的結束條件。  
-3. 主程式呼叫遞迴函式，並輸出計算結果。
+1. 遞迴版直接對應數學定義。
+
+2.非遞迴版使用一個陣列模擬函數呼叫堆疊，避免函數呼叫過深導致 stack overflow。
 
 ## 程式實作
 
-以下為主要程式碼：
-
+1. 遞迴版
 ```cpp
 #include <iostream>
 using namespace std;
 
-int sigma(int n) {
-    if (n < 0)
-        throw "n < 0";
-    else if (n <= 1)
-        return n;
-    return n + sigma(n - 1);
+int Ackermann(int m, int n) {
+    if (m == 0)
+        return n + 1;
+    else if (n == 0)
+        return Ackermann(m - 1, 1);
+    else
+        return Ackermann(m - 1, Ackermann(m, n - 1));
 }
 
 int main() {
-    int result = sigma(3);
-    cout << result << '\n';
-}
-```
+    int m, n;
+    cout << "Enter m and n: ";
+    cin >> m >> n;
+    }
 
+    cout << "A(" << m << "," << n << ") = " << Ackermann(m, n) << endl;
+    return 0;
+}
+
+```
+2.非遞迴版
+```cpp
+#include <iostream>
+using namespace std;
+
+int Ackermann_nonRecursive(int m, int n) {
+    const int MAX = 10000;
+    int stack[MAX];
+    int top = -1;
+
+    stack[++top] = m;
+    while (top >= 0) {
+        m = stack[top--];
+        if (m == 0)
+            n = n + 1;
+        else if (n == 0) {
+            n = 1;
+            stack[++top] = m - 1;
+        } else {
+            stack[++top] = m - 1;
+            stack[++top] = m;
+            n = n - 1;
+        }
+    }
+    return n;
+}
+
+int main() {
+    int m, n;
+    cout << "=== Ackermann Function (Non-recursive) ===\n";
+    cout << "Enter m and n: ";
+    cin >> m >> n;
+    }
+
+    cout << "A(" << m << "," << n << ") = " << Ackermann_nonRecursive(m, n) << endl;
+    return 0;
+}
+
+```
 ## 效能分析
 
 1. 時間複雜度：程式的時間複雜度為 $O(\log n)$。
