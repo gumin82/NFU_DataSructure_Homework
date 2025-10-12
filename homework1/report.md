@@ -91,7 +91,7 @@ int main() {
 ### 測試案例
 
 | 測試案例 | 輸入參數 (m, n) | 預期輸出 | 實際輸出 | 
-| :--: | :---------: | :--: | :--: | :--------------- |
+| -- | ---------:| -- | -- | --------------- |
 |  測試一 |    (0, 3)   |   4  |   4  | 
 |  測試二 |    (1, 2)   |   4  |   4  | 
 |  測試三 |    (2, 2)   |   7  |   7  | 
@@ -219,9 +219,22 @@ int main() {
 ### 編譯與執行指令
 
 ```shell
-$ g++ -std=c++17 -o sigma sigma.cpp
-$ ./sigma
-6
+$ g++ -std=c++17 -o powerset powerset.cpp
+$ ./powerset
+=== Problem 2: Power Set ===
+Enter number of elements: 3
+Enter elements:
+a b c
+Power set:
+{}
+{c}
+{b}
+{b,c}
+{a}
+{a,c}
+{a,b}
+{a,b,c}
+
 ```
 
 ### 結論
