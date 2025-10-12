@@ -67,7 +67,6 @@ int Ackermann_nonRecursive(int m, int n) {
 
 int main() {
     int m, n;
-    cout << "=== Ackermann Function (Non-recursive) ===\n";
     cout << "Enter m and n: ";
     cin >> m >> n;
     }
@@ -79,9 +78,14 @@ int main() {
 ```
 ## 效能分析
 
-1. 時間複雜度：程式的時間複雜度為 $O(\log n)$。
-2. 空間複雜度：空間複雜度為 $O(100\times \log n + \pi)$。
-
+時間複雜度 (Time Complexity)	Ackermann 函數的時間複雜度極高。雖然難以以一般形式表示，但其增長速度遠超過任何多項式或指數函數。對於小的輸入可近似為：
+ - 當 m = 0 時，僅需一次加法，為 $O(1)$。
+ - 當 m = 1 時，相當於線性遞迴，為 $O(n)$。
+ - 當 m = 2 時，接近 $O(2n + 3)$，仍屬線性。
+ - 當 m = 3 時，成長約為 $O(2^{n+3})$。
+ - 當 m = 4 時，成長為雙重指數 $O(2^{2^{n}})$。
+因此整體時間複雜度可表為 $O(A(m,n))$，即 Ackermann 函數自身的階。
+空間複雜度 (Space Complexity)	遞迴版每次呼叫都會佔用一層堆疊記憶體，因此空間複雜度為 $O(A(m,n))$。非遞迴版雖以陣列模擬堆疊，但在最壞情況下仍需同等數量的空間，因此仍為 $O(A(m,n))$。在小輸入情況（如 m=2, n=1），可視為 $O(n)$。
 ## 測試與驗證
 
 ### 測試案例
