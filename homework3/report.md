@@ -15,16 +15,7 @@
 使用 Available List 管理節點記憶體
 
 作業需實作下列類別：
-
-ChainNode
-
-Chain
-
-ChainIterator
-
-AvailableList
-
-Polynomial
+ChainNode、Chain、ChainIterator、AvailableList、Polynomial
 
 
 ### 解題策略
@@ -229,9 +220,21 @@ int main() {
 
 ## 效能分析
 
-1. 時間複雜度：程式的時間複雜度為 $O(\log n)$。
-2. 空間複雜度：空間複雜度為 $O(100\times \log n + \pi)$。
+加法 / 減法
 
+時間複雜度：$O(n + m)$
+
+空間複雜度：$O(n + m)$
+
+乘法
+
+時間複雜度：$O(n \times m)$
+
+空間複雜度：$O(n \times m)$
+
+Available List
+時間複雜度:$O(1)$
+空間複雜度:$O(1)$
 ## 測試與驗證
 
 ### 測試案例
