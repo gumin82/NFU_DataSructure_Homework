@@ -3,34 +3,227 @@
 作業三
 
 ## 解題說明
+本作業目標為實作一個 多項式（Polynomial）類別，其內部資料結構需使用自行實作的鏈結串列（Linked List）。
+多項式需支援以下功能：
 
-本題要求實現一個遞迴函式，計算從 $1$ 到 $n$ 的連加總和。
+多項式輸入與輸出
+
+多項式加法、減法與乘法
+
+代入數值進行多項式求值
+
+使用 Available List 管理節點記憶體
+
+作業需實作下列類別：
+
+ChainNode
+
+Chain
+
+ChainIterator
+
+AvailableList
+
+Polynomial
+
 
 ### 解題策略
 
-1. 使用遞迴函式將問題拆解為更小的子問題：
-   $$\Sigma(n) = n + \Sigma(n-1)$$
-2. 當 $n \leq 1$ 時，返回 $n$ 作為遞迴的結束條件。  
-3. 主程式呼叫遞迴函式，並輸出計算結果。
+使用 ChainNode 作為基本節點單位，並以 Chain 組成單向鏈結串列來儲存多項式的每一項（Term）。
+透過 ChainIterator 進行串列走訪，使多項式運算可使用 iterator 方式撰寫，提升程式可讀性。
+為了減少動態記憶體配置的成本，額外實作 Available List，用來回收不再使用的節點，並於需要時重新取用，符合資料結構課程中對記憶體管理的設計理念。
 
 ## 程式實作
 
 
 ```cpp
 #include <iostream>
+#include <cmath>
 using namespace std;
 
-int sigma(int n) {
-    if (n < 0)
-        throw "n < 0";
-    else if (n <= 1)
-        return n;
-    return n + sigma(n - 1);
+template <class T> class Chain;
+template <class T> class ChainIterator;
+template <class T> class AvailableList;
+
+template <class T>
+class ChainNode {
+    friend class Chain<T>;
+    friend class ChainIterator<T>;
+    friend class AvailableList<T>;
+private:
+    T element;
+    ChainNode<T>* next;
+public:
+    ChainNode() : next(nullptr) {}
+    ChainNode(const T& e) : element(e), next(nullptr) {}
+    ChainNode(const T& e, ChainNode<T>* n) : element(e), next(n) {}
+};
+
+template <class T>
+class ChainIterator {
+private:
+    ChainNode<T>* current;
+public:
+    ChainIterator(ChainNode<T>* p = nullptr) : current(p) {}
+    T& operator*() const { return current->element; }
+    T* operator->() const { return &current->element; }
+    ChainIterator& operator++() {
+        current = current->next;
+        return *this;
+    }
+    bool operator!=(const ChainIterator& rhs) const {
+        return current != rhs.current;
+    }
+};
+
+template <class T>
+class Chain {
+    friend class AvailableList<T>;
+private:
+    ChainNode<T>* head;
+public:
+    Chain() : head(nullptr) {}
+    ~Chain() {
+        while (head) {
+            ChainNode<T>* tmp = head;
+            head = head->next;
+            delete tmp;
+        }
+    }
+
+    ChainIterator<T> begin() const { return ChainIterator<T>(head); }
+    ChainIterator<T> end() const { return ChainIterator<T>(nullptr); }
+
+    void insertFront(const T& e) {
+        head = new ChainNode<T>(e, head);
+    }
+
+    ChainNode<T>* release() {
+        ChainNode<T>* tmp = head;
+        head = nullptr;
+        return tmp;
+    }
+};
+
+template <class T>
+class AvailableList {
+private:
+    static ChainNode<T>* available;
+public:
+    static ChainNode<T>* getNode() {
+        if (!available) return nullptr;
+        ChainNode<T>* node = available;
+        available = available->next;
+        node->next = nullptr;
+        return node;
+    }
+
+    static void getBack(ChainNode<T>* first) {
+        if (!first) return;
+        ChainNode<T>* p = first;
+        while (p->next) p = p->next;
+        p->next = available;
+        available = first;
+    }
+};
+
+template <class T>
+ChainNode<T>* AvailableList<T>::available = nullptr;
+
+struct Term {
+    double coef;
+    int exp;
+    Term(double c = 0, int e = 0) : coef(c), exp(e) {}
+};
+
+class Polynomial {
+    friend istream& operator>>(istream&, Polynomial&);
+    friend ostream& operator<<(ostream&, const Polynomial&);
+private:
+    Chain<Term> terms;
+public:
+    void newTerm(double c, int e) {
+        if (c == 0) return;
+
+        for (auto it = terms.begin(); it != terms.end(); ++it) {
+            if (it->exp == e) {
+                it->coef += c;
+                return;
+            }
+        }
+        terms.insertFront(Term(c, e));
+    }
+
+    double Evaluate(double x) const {
+        double sum = 0;
+        for (auto it = terms.begin(); it != terms.end(); ++it)
+            sum += it->coef * pow(x, it->exp);
+        return sum;
+    }
+
+    Polynomial operator+(const Polynomial& b) const {
+        Polynomial r;
+        for (auto it = terms.begin(); it != terms.end(); ++it)
+            r.newTerm(it->coef, it->exp);
+        for (auto it = b.terms.begin(); it != b.terms.end(); ++it)
+            r.newTerm(it->coef, it->exp);
+        return r;
+    }
+
+    Polynomial operator-(const Polynomial& b) const {
+        Polynomial r;
+        for (auto it = terms.begin(); it != terms.end(); ++it)
+            r.newTerm(it->coef, it->exp);
+        for (auto it = b.terms.begin(); it != b.terms.end(); ++it)
+            r.newTerm(-it->coef, it->exp);
+        return r;
+    }
+
+    Polynomial operator*(const Polynomial& b) const {
+        Polynomial r;
+        for (auto it1 = terms.begin(); it1 != terms.end(); ++it1)
+            for (auto it2 = b.terms.begin(); it2 != b.terms.end(); ++it2)
+                r.newTerm(it1->coef * it2->coef,
+                    it1->exp + it2->exp);
+        return r;
+    }
+};
+
+istream& operator>>(istream& is, Polynomial& p) {
+    int n;
+    is >> n;
+    for (int i = 0; i < n; i++) {
+        double c;
+        int e;
+        is >> c >> e;
+        p.newTerm(c, e);
+    }
+    return is;
+}
+
+ostream& operator<<(ostream& os, const Polynomial& p) {
+    bool first = true;
+    for (auto it = p.terms.begin(); it != p.terms.end(); ++it) {
+        if (!first && it->coef > 0) os << "+";
+        os << it->coef << "x^" << it->exp;
+        first = false;
+    }
+    return os;
 }
 
 int main() {
-    int result = sigma(3);
-    cout << result << '\n';
+    Polynomial A, B;
+    cout << "A:";
+    cin >> A;
+    cout << "B:";
+    cin >> B;
+    //cout << "A=" << A << endl;
+    //cout << "B=" << B << endl;
+    cout << "A+B=" << A + B << endl;
+    cout << "A-B=" << A - B << endl;
+    cout << "A*B=" << A * B << endl;
+    cout << "A(2)=" << A.Evaluate(2) << endl;
+    return 0;
 }
 ```
 
