@@ -3,16 +3,10 @@
 作業三
 
 ## 解題說明
-本作業目標為實作一個 多項式（Polynomial）類別，其內部資料結構需使用自行實作的鏈結串列（Linked List）。
+本作業目標為實作一個 多項式(Polynomial)類別，其內部資料結構需使用自行實作的鏈結串列(LinkedList）。
 多項式需支援以下功能：
 
-多項式輸入與輸出
-
-多項式加法、減法與乘法
-
-代入數值進行多項式求值
-
-使用 Available List 管理節點記憶體
+多項式輸入與輸出、多項式加法、減法與乘法、代入數值進行多項式求值、使用 Available List 管理節點記憶體
 
 作業需實作下列類別：
 ChainNode、Chain、ChainIterator、AvailableList、Polynomial
@@ -20,7 +14,7 @@ ChainNode、Chain、ChainIterator、AvailableList、Polynomial
 
 ### 解題策略
 
-使用 ChainNode 作為基本節點單位，並以 Chain 組成單向鏈結串列來儲存多項式的每一項（Term）。
+使用 ChainNode 作為基本節點單位，並以 Chain 組成單向鏈結串列來儲存多項式的每一項(Term)。
 透過 ChainIterator 進行串列走訪，使多項式運算可使用 iterator 方式撰寫，提升程式可讀性。
 為了減少動態記憶體配置的成本，額外實作 Available List，用來回收不再使用的節點，並於需要時重新取用，符合資料結構課程中對記憶體管理的設計理念。
 
@@ -222,19 +216,19 @@ int main() {
 
 加法 / 減法
 
-時間複雜度：$O(n + m)$
+時間複雜度: $O(n + m)$
 
-空間複雜度：$O(n + m)$
+空間複雜度: $O(n + m)$
 
 乘法
 
-時間複雜度：$O(n \times m)$
+時間複雜度: $O(n \times m)$
 
-空間複雜度：$O(n \times m)$
+空間複雜度: $O(n \times m)$
 
 Available List
-時間複雜度:$O(1)$
-空間複雜度:$O(1)$
+時間複雜度: $O(1)$
+空間複雜度: $O(1)$
 ## 測試與驗證
 
 ### 測試案例
