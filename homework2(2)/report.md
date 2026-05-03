@@ -602,7 +602,7 @@ int main(){
 }
 ```
 
-Dijkstra 程式碼:
+Nonnegative Edge CostsEdge Costs 程式碼:
 ```cpp
 #include <iostream>
 #include <vector>
@@ -655,7 +655,7 @@ int main() {
 }
 ```
 
-Bellman-Ford 程式碼:
+General WeightsWeights 程式碼:
 ```cpp
 #include <iostream>
 #include <vector>
@@ -691,7 +691,7 @@ int main(){
 }
 ```
 
-Floyd-Warshall 程式碼:
+All-Pairs Shortest Paths 程式碼:
 ```cpp
 #include <iostream>
 using namespace std;
