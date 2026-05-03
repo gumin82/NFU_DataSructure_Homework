@@ -92,19 +92,19 @@ Prim（最小生成樹）
 
 ---
 
-Dijkstra（非負最短路徑）  
+All Destination: Nonnegative Edge CostsEdge Costs（非負最短路徑）  
 每次選擇目前距離最小節點進行擴展並更新鄰居距離。  
 使用 greedy + priority queue，但不能處理負權重。
 
 ---
 
-Bellman-Ford（含負權）  
+All Destination: General WeightsWeights（含負權）  
 對所有邊重複進行 V-1 次鬆弛操作更新距離。  
 可處理負權並能偵測負權環。
 
 ---
 
-Floyd-Warshall（全點對最短路徑）  
+All-Pairs Shortest Paths（全點對最短路徑）  
 透過三層迴圈嘗試每個中繼點是否能縮短任意兩點距離。  
 核心為動態規劃，時間複雜度 O(V^3)。
 
@@ -861,7 +861,7 @@ int main(){
 
 在演算法部分，透過 DFS 與 BFS 掌握圖的遍歷方式，並延伸至連通分量、生成樹與雙連通分量等結構分析問題。
 
-實作最小生成樹與最短路徑演算法，理解 Kruskal、Prim 及 Dijkstra、Bellman-Ford、Floyd 等方法的適用條件與限制。
+實作最小生成樹與最短路徑演算法，理解 Kruskal、Prim 及 All Destination: Nonnegative Edge CostsEdge Costs、All Destination: General WeightsWeights、All-Pairs Shortest Paths 等方法的適用條件與限制。
 
 最後在 AOV 與 AOE 排程問題中，體會拓撲排序與關鍵路徑在實務專案中的應用。
 
@@ -885,7 +885,7 @@ int main(){
 
 例如 Kruskal 與 Prim 雖然都在找**最小生成樹**，但一個是從**邊**的角度思考，一個是從**點**的角度擴展。
 
-而最短路徑部分也讓我理解不同演算法的限制，例如 **Dijkstra 不能處理負權重**，而 **Bellman-Ford 則可以，但效率較低**。
+而最短路徑部分也讓我理解不同演算法的限制，例如 **All Destination: Nonnegative Edge CostsEdge Costs 不能處理負權重**，而 **All Destination: General WeightsWeights 則可以，但效率較低**。
 
 整體來說，這次作業不只是單純把演算法寫出來，而是讓我更清楚理解每個 Graph 問題背後的思考方式，以及如何根據條件選擇適合的解法。
 
