@@ -794,7 +794,7 @@ int main(){
 
 | 演算法                    | 時間複雜度      | 空間複雜度    |
 | ---------------------- | ---------- | -------- |
-| Adjacency Matrix       | O(1)（查詢）   | O(V²)    |
+| Adjacency Matrix       | O(1)   | O(V²)    |
 | Adjacency List         | O(V + E)   | O(V + E) |
 | Adjacency Multilist    | O(V + E)   | O(V + E) |
 | DFS                    | O(V + E)   | O(V)     |
