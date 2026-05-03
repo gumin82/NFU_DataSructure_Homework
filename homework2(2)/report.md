@@ -403,6 +403,11 @@ int main() {
 }
 ```
 
+Kruskal’s Algorithm 程式碼:
+```cpp
+
+```
+
 
 ## 效能分析
 
