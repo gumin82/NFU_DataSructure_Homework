@@ -64,33 +64,42 @@ BFS 的特點是：能求得無權重圖的最短路徑、適合層級結構分�
 3️. 圖形性質分析
 Connected Components（連通分量）
 利用 DFS 或 BFS 反覆遍歷圖中尚未拜訪的節點，將整個圖分割為多個連通區塊。
+
 Spanning Tree（生成樹）
 透過 DFS 或 BFS 過程中所使用的邊，即可形成一棵包含所有節點且無循環的樹結構，邊數為 V-1。
+
 Biconnected Components（雙連通分量）
 採用 DFS 並結合 dfn（訪問順序）與 low（可回溯的最小祖先節點）來判斷 articulation point（割點）。
 若移除某節點會導致圖分裂，則該節點為關鍵點。
+
 4️.最小生成樹（MST）策略
 Kruskal’s Algorithm
 先將所有邊依權重排序，逐一選擇最小邊加入生成樹，並利用 Union-Find 判斷是否形成 cycle。
 適合邊數較少（稀疏圖）。
+
 Prim’s Algorithm
 從任一節點出發，利用 priority queue 持續選擇與目前生成樹相連的最小邊。
 適合邊數較多（稠密圖）。
+
 5️. 最短路徑演算法策略
 All Destination: Nonnegative Edge CostsEdge Costs（非負權重）
 採用 greedy 策略，每次選擇目前距離最短的節點進行擴展，並透過 priority queue 優化效率。
 限制：不可處理負權重。
+
 All Destination: General WeightsWeights（含負權重）
 透過反覆對所有邊進行「鬆弛（relaxation）」操作，逐步更新最短距離，並可檢測負權環。
+
 All-Pairs Shortest Paths（全點對）
 使用動態規劃（DP），透過三層迴圈更新所有點對之間的最短距離，適用於需要完整距離矩陣的情境。
+
 6. DAG 與排程問題
 AOV（Activity on Vertex）
 使用拓撲排序（Topological Sort）來決定活動執行順序，確保所有前置條件皆滿足。
+
 AOE（Activity on Edge）
 以邊表示活動，透過最長路徑計算關鍵路徑（Critical Path），找出影響專案完成時間的關鍵活動。
-## 程式實作
 
+## 程式實作
 Adjacency Matrix 程式碼：
 
 ```cpp
