@@ -836,13 +836,19 @@ int main(){
 
 ### 測試案例
 
-| 測試案例 | 輸入內容 | 預期輸出 |
-|-----------|-----------|-----------|
-| 測試一 | A = 2X² + 3X + 1<br>B = X² + 2X + 3<br>x = 2 | A+B = 3X²+5X+4<br>A×B = 2X⁴+7X³+11X²+9X+3<br>A(2)=15<br>B(2)=11 |
-| 測試二 | A = 5X³ - 2X + 1<br>B = -3X² + 4X - 2<br>x = -1 | A+B = 5X³-3X²+2X-1<br>A×B = -15X⁵+20X⁴-7X³+14X²-8X+2<br>A(-1)=-2<br>B(-1)=-9 |
-| 測試三 | A = X⁴ + 2X² + 3<br>B = 3X + 1<br>x = 3 | A+B = X⁴+2X²+3X+4<br>A×B = 3X⁵+X⁴+6X³+2X²+9X+3<br>A(3)=96<br>B(3)=10 |
-| 測試四 | A = 0 <br>B = 4X² + 2X + 1<br>x = 5 | A+B = 4X²+2X+1<br>A×B = 0<br>A(5)=0<br>B(5)=111 |
-| 測試五 | A = X⁵ + X⁴ + X³ + X² + X + 1<br>B = X + 1<br>x = 2 | A+B = X⁵+X⁴+X³+X²+2X+2<br>A×B = X⁶+2X⁵+2X⁴+2X³+2X²+2X+1<br>A(2)=63<br>B(2)=3 |
+| 測試項目                               | 輸入內容                                                               | 預期輸出                                                                                                             |
+| ---------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| **Adjacency Matrix（含權重 / 無權重）**    | 4 3<br>0 1 5<br>1 2 3<br>2 3 2                                     | 無權重矩陣:<br>0 1 0 0<br>1 0 1 0<br>0 1 0 1<br>0 0 1 0<br><br>有權重矩陣:<br>0 5 0 0<br>5 0 3 0<br>0 3 0 2<br>0 0 2 0     |
+| **Adjacency List（含權重 / 無權重）**      | 4 3<br>0 1 5<br>1 2 3<br>2 3 2                                     | 無權重:<br>0: 1<br>1: 0 2<br>2: 1 3<br>3: 2<br><br>有權重:<br>0: (1,5)<br>1: (0,5) (2,3)<br>2: (1,3) (3,2)<br>3: (2,2) |
+| **Adjacency Multilist（含權重 / 無權重）** | 4 3<br>0 1 5<br>1 2 3<br>2 3 2                                     | 無權重:<br>0: 1<br>1: 0 2<br>2: 1 3<br>3: 2<br><br>有權重:<br>0: (1,5)<br>1: (0,5) (2,3)<br>2: (1,3) (3,2)<br>3: (2,2) |
+| DFS / BFS / Spanning Tree          | 5 4<br>0 1<br>0 2<br>1 3<br>2 4                                    | DFS: 0 1 3 2 4<br>BFS: 0 1 2 3 4<br>Spanning Tree:<br>0-1, 1-3, 0-2, 2-4                                         |
+| Connected Components               | 6 3<br>0 1<br>1 2<br>3 4                                           | Component 1: 0 1 2<br>Component 2: 3 4<br>Component 3: 5                                                         |
+| Kruskal / Prim（MST）                | 4 5<br>0 1 5<br>0 2 2<br>1 2 1<br>1 3 3<br>2 3 4                   | MST edges:<br>1-2(1), 0-2(2), 1-3(3)<br>Total cost: 6                                                            |
+| Nonnegative Edge CostsEdge Costs / General WeightsWeights  | 4 5<br>0 1 5<br>0 2 2<br>1 2 1<br>1 3 3<br>2 3 4<br>start=0   | dist[0]=0<br>dist[1]=5<br>dist[2]=2<br>dist[3]=6                                                                 |
+| All-Pairs Shortest Paths                     | 4<br>0 5 2 999<br>999 0 1 3<br>999 999 0 4<br>999 999 999 0        | 0 5 2 6<br>∞ 0 1 3<br>∞ ∞ 0 4<br>∞ ∞ ∞ 0                                                                         |
+| AOV（Topological）                   | 6 6<br>0 1<br>0 2<br>1 3<br>2 3<br>3 4<br>4 5                      | Topological Order:<br>0 1 2 3 4 5                                                                                |
+| AOE（Critical Path）                 | 6 7<br>0 1 3<br>0 2 2<br>1 3 2<br>2 3 1<br>3 4 4<br>4 5 2<br>2 5 6 | Earliest time:<br>v0:0 v1:3 v2:2 v3:5 v4:9 v5:11                                                                 |
+
 
 ---
 
