@@ -345,6 +345,11 @@ int main(){
 }
 ```
 
+Biconnected Components 程式碼:
+```cpp
+
+```
+
 
 ## 效能分析
 
