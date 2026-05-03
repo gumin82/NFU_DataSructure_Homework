@@ -32,7 +32,7 @@
 
 ## 程式實作
 
-Adjacency Matrix主要程式碼：
+Adjacency Matrix 主要程式碼：
 
 ```cpp
 #include <iostream>
@@ -80,7 +80,11 @@ int main(){
     }
 }
 ```
+Adjacency lists 主要程式碼：
 
+```cpp
+
+```
 ## 效能分析
 
 | 函式          | 時間複雜度            | 空間複雜度    |
