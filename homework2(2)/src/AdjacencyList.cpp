@@ -20,7 +20,7 @@ int main(){
         weighted[v].push_back({u,w});
     }
 
-    cout<<"Unweighted List:\n";
+    cout<<"無權重:\n";
     for(int i=0;i<V;i++){
         cout<<i<<": ";
         for(int x: unweighted[i])
@@ -28,7 +28,7 @@ int main(){
         cout<<endl;
     }
 
-    cout<<"\nWeighted List:\n";
+    cout<<"\n有權重:\n";
     for(int i=0;i<V;i++){
         cout<<i<<": ";
         for(auto x: weighted[i])
