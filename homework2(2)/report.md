@@ -267,6 +267,12 @@ int main(){
 }
 ```
 
+Connected Components 程式碼:
+```cpp
+
+```
+
+
 ## 效能分析
 
 | 函式          | 時間複雜度            | 空間複雜度    |
