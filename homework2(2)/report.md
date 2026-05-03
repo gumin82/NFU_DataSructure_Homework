@@ -456,6 +456,11 @@ int main(){
 }
 ```
 
+Prim’s Algorithm 程式碼:
+```cpp
+
+```
+
 
 ## 效能分析
 
