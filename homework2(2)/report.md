@@ -7,43 +7,38 @@
 這次作業實作多種Graph相關演算法與資料結構，包括：
 
 圖形表示法
-Adjacency Matrix
+1.Adjacency Matrix
 
-Adjacency List
+2.Adjacency List
 
-Adjacency Multilist
+3.Adjacency Multilist
 
 圖形走訪
 
-Depth First Search（DFS）
-
-Breadth First Search（BFS）
+1.Depth First Search（DFS）
+2.Breadth First Search（BFS）
 
 圖形分析
-Connected Components
 
-Spanning Tree
-
-Biconnected Components
+1.Connected Components
+2.Spanning Tree
+3.Biconnected Components
 
 最佳化問題
 
-Kruskal’s Algorithm
-
-Prim’s Algorithm
+1.Kruskal’s Algorithm
+2.Prim’s Algorithm
 
 最短路徑
 
-All Destination: Nonnegative Edge CostsEdge Costs（非負權重）
+1.All Destination: Nonnegative Edge CostsEdge Costs（非負權重）
+2.All Destination: General WeightsWeights（含負權重）
+3.All-Pairs Shortest Paths（全點對）
 
-All Destination: General WeightsWeights（含負權重）
-
-All-Pairs Shortest Paths（全點對）
 排程問題
 
-AOV（Topological Sort)
-
-AOE（Critical Path）
+1.AOV（Topological Sort)
+2.AOE（Critical Path）
 
 ### 解題策略
 
@@ -51,26 +46,21 @@ AOE（Critical Path）
 
 在圖的表示上三種方式：
 
-Adjacency Matrix（鄰接矩陣）
-使用二維陣列表示頂點之間的連接關係，適合處理稠密圖，查詢兩點之間是否有邊的時間複雜度為 O(1)，但空間成本較高。
-Adjacency List（鄰接串列）
-使用 vector 儲存每個頂點的鄰接節點，適合稀疏圖，可有效降低空間使用量至 O(V + E)，並提升遍歷效率。
-Adjacency Multilist（鄰接多重串列）
-將每條邊只儲存一次，並同時連結兩端點，有助於減少記憶體浪費，並適用於需要頻繁刪除或操作邊的情況。
+Adjacency Matrix（鄰接矩陣）使用二維陣列表示頂點之間的連接關係，適合處理稠密圖，查詢兩點之間是否有邊的時間複雜度為 O(1)，但空間成本較高。
+
+Adjacency List（鄰接串列）使用 vector 儲存每個頂點的鄰接節點，適合稀疏圖，可有效降低空間使用量至 O(V + E)，並提升遍歷效率。
+
+Adjacency Multilist（鄰接多重串列)將每條邊只儲存一次，並同時連結兩端點，有助於減少記憶體浪費，並適用於需要頻繁刪除或操作邊的情況。
+
 在本次實作中，主要演算法（DFS、BFS、最短路徑等）以 adjacency list 為核心資料結構，以兼顧效率與實作簡便性。
 
 2️. 圖形走訪演算法設計
-Depth First Search（DFS）
-採用遞迴方式實作，從起始節點出發，持續向未拜訪的鄰接節點深入搜尋，直到無法繼續為止，再回溯至上一層。
-DFS 特別適用於：
-連通分量判斷
-生成樹建構
-Biconnected Components 分析
-Breadth First Search（BFS）
-使用 queue實作，從起點開始逐層擴展節點，確保先拜訪距離較近的節點。
-BFS 的特點是：
-能求得無權重圖的最短路徑
-適合層級結構分析
+Depth First Search（DFS）採用遞迴方式實作，從起始節點出發，持續向未拜訪的鄰接節點深入搜尋，直到無法繼續為止，再回溯至上一層。
+DFS 特別適用於：連通分量判斷、生成樹建構、Biconnected Components 分析
+
+Breadth First Search（BFS）使用 queue實作，從起點開始逐層擴展節點，確保先拜訪距離較近的節點。
+BFS 的特點是：能求得無權重圖的最短路徑、適合層級結構分析
+
 3️. 圖形性質分析
 Connected Components（連通分量）
 利用 DFS 或 BFS 反覆遍歷圖中尚未拜訪的節點，將整個圖分割為多個連通區塊。
