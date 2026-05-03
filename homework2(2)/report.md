@@ -4,32 +4,83 @@
 
 ## 解題說明
 
-本題要求實作一個多項式類別 Polynomial，能進行以下操作：
+這次作業實作多種Graph相關演算法與資料結構，包括：
 
-多項式的輸入與輸出
-
-多項式相加 (Add)
-
-多項式相乘 (Mult)
-
-多項式代入求值 (Eval)
-
-每個多項式由多項項目（Term）組成，每項包含係數 (coef) 與指數 (exp)。
-使用者可輸入任意項數的多項式，程式必須能動態儲存與計算。
+圖形表示法
+Adjacency Matrix
+Adjacency List
+Adjacency Multilist
+圖形走訪
+Depth First Search（DFS）
+Breadth First Search（BFS）
+圖形分析
+Connected Components
+Spanning Tree
+Biconnected Components
+最佳化問題
+Kruskal’s Algorithm
+Prim’s Algorithm
+最短路徑
+All Destination: Nonnegative Edge CostsEdge Costs（非負權重）
+All Destination: General WeightsWeights（含負權重）
+All-Pairs Shortest Paths（全點對）
+排程問題
+AOV（Topological Sort）
+AOE（Critical Path）
 ### 解題策略
 
-1.使用 class Term 儲存每一項的係數與指數。
+1️.圖形資料結構設計
 
-2.使用動態陣列 Term* termArray 儲存整個多項式的所有項。
+在圖的表示上三種方式：
 
-3.newTerm() 可自動擴充陣列容量並合併同指數項。
+Adjacency Matrix（鄰接矩陣）
+使用二維陣列表示頂點之間的連接關係，適合處理稠密圖，查詢兩點之間是否有邊的時間複雜度為 O(1)，但空間成本較高。
+Adjacency List（鄰接串列）
+使用 vector 儲存每個頂點的鄰接節點，適合稀疏圖，可有效降低空間使用量至 O(V + E)，並提升遍歷效率。
+Adjacency Multilist（鄰接多重串列）
+將每條邊只儲存一次，並同時連結兩端點，有助於減少記憶體浪費，並適用於需要頻繁刪除或操作邊的情況。
+在本次實作中，主要演算法（DFS、BFS、最短路徑等）以 adjacency list 為核心資料結構，以兼顧效率與實作簡便性。
 
-4.Add() 逐項比較指數，將相同次方項相加。
-
-5.Mult() 雙層迴圈逐項相乘，再利用 newTerm() 自動合併結果。
-
-6.Eval() 代入變數 x，逐項計算多項式的總和值。
-
+2️. 圖形走訪演算法設計
+Depth First Search（DFS）
+採用遞迴方式實作，從起始節點出發，持續向未拜訪的鄰接節點深入搜尋，直到無法繼續為止，再回溯至上一層。
+DFS 特別適用於：
+連通分量判斷
+生成樹建構
+Biconnected Components 分析
+Breadth First Search（BFS）
+使用 queue實作，從起點開始逐層擴展節點，確保先拜訪距離較近的節點。
+BFS 的特點是：
+能求得無權重圖的最短路徑
+適合層級結構分析
+3️. 圖形性質分析
+Connected Components（連通分量）
+利用 DFS 或 BFS 反覆遍歷圖中尚未拜訪的節點，將整個圖分割為多個連通區塊。
+Spanning Tree（生成樹）
+透過 DFS 或 BFS 過程中所使用的邊，即可形成一棵包含所有節點且無循環的樹結構，邊數為 V-1。
+Biconnected Components（雙連通分量）
+採用 DFS 並結合 dfn（訪問順序）與 low（可回溯的最小祖先節點）來判斷 articulation point（割點）。
+若移除某節點會導致圖分裂，則該節點為關鍵點。
+4️.最小生成樹（MST）策略
+Kruskal’s Algorithm
+先將所有邊依權重排序，逐一選擇最小邊加入生成樹，並利用 Union-Find 判斷是否形成 cycle。
+適合邊數較少（稀疏圖）。
+Prim’s Algorithm
+從任一節點出發，利用 priority queue 持續選擇與目前生成樹相連的最小邊。
+適合邊數較多（稠密圖）。
+5️. 最短路徑演算法策略
+All Destination: Nonnegative Edge CostsEdge Costs（非負權重）
+採用 greedy 策略，每次選擇目前距離最短的節點進行擴展，並透過 priority queue 優化效率。
+限制：不可處理負權重。
+All Destination: General WeightsWeights（含負權重）
+透過反覆對所有邊進行「鬆弛（relaxation）」操作，逐步更新最短距離，並可檢測負權環。
+All-Pairs Shortest Paths（全點對）
+使用動態規劃（DP），透過三層迴圈更新所有點對之間的最短距離，適用於需要完整距離矩陣的情境。
+6. DAG 與排程問題
+AOV（Activity on Vertex）
+使用拓撲排序（Topological Sort）來決定活動執行順序，確保所有前置條件皆滿足。
+AOE（Activity on Edge）
+以邊表示活動，透過最長路徑計算關鍵路徑（Critical Path），找出影響專案完成時間的關鍵活動。
 ## 程式實作
 
 Adjacency Matrix 程式碼：
