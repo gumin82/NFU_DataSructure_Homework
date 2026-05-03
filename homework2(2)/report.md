@@ -80,6 +80,7 @@ int main(){
     }
 }
 ```
+
 Adjacency lists 主要程式碼：
 
 ```cpp
@@ -121,6 +122,11 @@ int main(){
         cout<<endl;
     }
 }
+```
+
+Adjacency Multilist 主要程式碼：
+```cpp
+
 ```
 ## 效能分析
 
