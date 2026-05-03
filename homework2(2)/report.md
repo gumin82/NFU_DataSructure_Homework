@@ -32,7 +32,7 @@
 
 ## 程式實作
 
-Adjacency Matrix 主要程式碼：
+Adjacency Matrix 程式碼：
 
 ```cpp
 #include <iostream>
@@ -81,7 +81,7 @@ int main(){
 }
 ```
 
-Adjacency lists 主要程式碼：
+Adjacency lists 程式碼：
 
 ```cpp
 #include <iostream>
@@ -124,7 +124,7 @@ int main(){
 }
 ```
 
-Adjacency Multilist 主要程式碼：
+Adjacency Multilist 程式碼：
 ```cpp
 #include <iostream>
 using namespace std;
