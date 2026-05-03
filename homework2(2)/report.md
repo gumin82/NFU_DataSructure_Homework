@@ -8,25 +8,43 @@
 
 圖形表示法
 Adjacency Matrix
+
 Adjacency List
+
 Adjacency Multilist
+
 圖形走訪
+
 Depth First Search（DFS）
+
 Breadth First Search（BFS）
+
 圖形分析
 Connected Components
+
 Spanning Tree
+
 Biconnected Components
+
 最佳化問題
+
 Kruskal’s Algorithm
+
 Prim’s Algorithm
+
 最短路徑
+
 All Destination: Nonnegative Edge CostsEdge Costs（非負權重）
+
 All Destination: General WeightsWeights（含負權重）
+
 All-Pairs Shortest Paths（全點對）
 排程問題
-AOV（Topological Sort）
+
+AOV（Topological Sort)
+
 AOE（Critical Path）
+
 ### 解題策略
 
 1️.圖形資料結構設計
