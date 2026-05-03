@@ -7,38 +7,38 @@
 這次作業實作多種Graph相關演算法與資料結構，包括：
 
 圖形表示法
-- 1.Adjacency Matrix
+- Adjacency Matrix
 
-- 2.Adjacency List
+- Adjacency List
 
-- 3.Adjacency Multilist
+- Adjacency Multilist
 
 圖形走訪
 
-- 1.Depth First Search（DFS）
-- 2.Breadth First Search（BFS）
+- Depth First Search（DFS）
+- Breadth First Search（BFS）
 
 圖形分析
 
-- 1.Connected Components
-- 2.Spanning Tree
-- 3.Biconnected Components
+- Connected Components
+- Spanning Tree
+- Biconnected Components
 
 最佳化問題
 
-- 1.Kruskal’s Algorithm
-- 2.Prim’s Algorithm
+- Kruskal’s Algorithm
+- Prim’s Algorithm
 
 最短路徑
 
-- 1.All Destination: Nonnegative Edge CostsEdge Costs（非負權重）
-- 2.All Destination: General WeightsWeights（含負權重）
-- 3.All-Pairs Shortest Paths（全點對）
+- All Destination: Nonnegative Edge CostsEdge Costs（非負權重）
+- All Destination: General WeightsWeights（含負權重）
+- All-Pairs Shortest Paths（全點對）
 
 排程問題
 
-- 1.AOV（Topological Sort)
-- 2.AOE（Critical Path）
+- AOV（Topological Sort)
+- AOE（Critical Path）
 
 ### 解題策略
 
