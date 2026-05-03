@@ -792,12 +792,23 @@ int main(){
 
 ## 效能分析
 
-| 函式          | 時間複雜度            | 空間複雜度    |
-| ----------- | ---------------- | -------- |
-| `Add()`     | O(n + m)         | O(n + m) | 
-| `Mult()`    | O(n × m)         | O(n + m) |
-| `Eval()`    | O(n × k)         | O(1)     |
-| `newTerm()` | 改寫時 O(n)，平均 O(1) | O(n)     |
+| 演算法                    | 時間複雜度      | 空間複雜度    |
+| ---------------------- | ---------- | -------- |
+| Adjacency Matrix       | O(1)（查詢）   | O(V²)    |
+| Adjacency List         | O(V + E)   | O(V + E) |
+| Adjacency Multilist    | O(V + E)   | O(V + E) |
+| DFS                    | O(V + E)   | O(V)     |
+| BFS                    | O(V + E)   | O(V)     |
+| Connected Components   | O(V + E)   | O(V)     |
+| Spanning Tree          | O(V + E)   | O(V)     |
+| Biconnected Components | O(V + E)   | O(V)     |
+| Kruskal’s Algorithm    | O(E log E) | O(V)     |
+| Prim’s Algorithm       | O(E log V) | O(V)     |
+|Nonnegative Edge CostsEdge Costs | O(E log V) | O(V)     |
+| General WeightsWeights   | O(VE)      | O(V)     |
+| All-Pairs Shortest Paths   | O(V³)      | O(V²)    |
+| AOV  | O(V + E)   | O(V)     |
+| AOE     | O(V + E)   | O(V)     |
 
 
 ## 測試與驗證
