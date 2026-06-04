@@ -46,25 +46,3 @@ void heapSort(int arr[],int n)
         heapify(arr,i,0);
     }
 }
-
-int main()
-{
-    int n;
-    cin>>n;
-
-    int* arr=new int[n];
-
-    for(int i=0;i<n;i++)
-        cin>>arr[i];
-
-    heapSort(arr,n);
-
-    for(int i=0;i<n;i++)
-        cout<<arr[i]<<" ";
-
-    cout<<endl;
-
-    delete[] arr;
-
-    return 0;
-}
