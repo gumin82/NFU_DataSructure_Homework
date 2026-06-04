@@ -1,9 +1,10 @@
 //41343133
 //41343122
+
 #include <iostream>
 using namespace std;
 
-void swapValue(int &a,int &b)
+void quickSwap(int &a,int &b)
 {
     int temp=a;
     a=b;
@@ -15,20 +16,20 @@ int medianOfThree(int arr[],int left,int right)
     int mid=(left+right)/2;
 
     if(arr[left]>arr[mid])
-        swapValue(arr[left],arr[mid]);
+        quickSwap(arr[left],arr[mid]);
 
     if(arr[left]>arr[right])
-        swapValue(arr[left],arr[right]);
+        quickSwap(arr[left],arr[right]);
 
     if(arr[mid]>arr[right])
-        swapValue(arr[mid],arr[right]);
+        quickSwap(arr[mid],arr[right]);
 
-    swapValue(arr[mid],arr[right-1]);
+    quickSwap(arr[mid],arr[right-1]);
 
     return arr[right-1];
 }
 
-void quickSort(int arr[],int left,int right)
+void quickSortRecursive(int arr[],int left,int right)
 {
     if(left+10<=right)
     {
@@ -43,15 +44,15 @@ void quickSort(int arr[],int left,int right)
             while(arr[--j]>pivot){}
 
             if(i<j)
-                swapValue(arr[i],arr[j]);
+                quickSwap(arr[i],arr[j]);
             else
                 break;
         }
 
-        swapValue(arr[i],arr[right-1]);
+        quickSwap(arr[i],arr[right-1]);
 
-        quickSort(arr,left,i-1);
-        quickSort(arr,i+1,right);
+        quickSortRecursive(arr,left,i-1);
+        quickSortRecursive(arr,i+1,right);
     }
     else
     {
@@ -69,4 +70,9 @@ void quickSort(int arr[],int left,int right)
             arr[j]=tmp;
         }
     }
+}
+
+void quickSort(int arr[],int n)
+{
+    quickSortRecursive(arr,0,n-1);
 }
