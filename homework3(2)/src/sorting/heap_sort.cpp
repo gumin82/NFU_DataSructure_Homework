@@ -1,9 +1,10 @@
 //41343133
 //41343122
+
 #include <iostream>
 using namespace std;
 
-void swapValue(int &a,int &b)
+void heapSwap(int &a,int &b)
 {
     int temp=a;
     a=b;
@@ -27,8 +28,8 @@ void heapify(int arr[],int n,int i)
 
     if(largest!=i)
     {
-        swapValue(arr[i],
-                  arr[largest]);
+        heapSwap(arr[i],
+                 arr[largest]);
 
         heapify(arr,n,largest);
     }
@@ -41,7 +42,7 @@ void heapSort(int arr[],int n)
 
     for(int i=n-1;i>0;i--)
     {
-        swapValue(arr[0],arr[i]);
+        heapSwap(arr[0],arr[i]);
 
         heapify(arr,i,0);
     }
