@@ -1,46 +1,13 @@
 
 # 41343122
 # 41343133
-作業二(Graph)
 
 ## 解題說明
 
-這次作業實作多種Graph相關演算法與資料結構，包括：
+- 本作業旨在實作多種經典排序演算法，並透過 Benchmark 測試分析各演算法在不同資料規模與不同測試情境下的執行效率與記憶體使用情形。
+- 測試資料規模為 n = 500、1000、2000、3000、4000、5000，並分別針對 Best Case、Average Case 與 Worst Case 進行實驗。
 
-圖形表示法
-- Adjacency Matrix
-
-- Adjacency List
-
-- Adjacency Multilist
-
-圖形走訪
-
-- Depth First Search（DFS）
-- Breadth First Search（BFS）
-
-圖形分析
-
-- Connected Components
-- Spanning Tree
-- Biconnected Components
-
-最佳化問題
-
-- Kruskal’s Algorithm
-- Prim’s Algorithm
-
-最短路徑
-
-- All Destination: Nonnegative Edge CostsEdge Costs（非負權重）
-- All Destination: General WeightsWeights（含負權重）
-- All-Pairs Shortest Paths（全點對）
-
-排程問題
-
-- AOV（Topological Sort)
-- AOE（Critical Path）
-
+本次作業實作以下五種排序演算法：
 ### 解題策略
 # Graph 作業解題策略
 
