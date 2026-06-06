@@ -1024,6 +1024,7 @@ n > 1500 → Merge
 4. correctness check
 isSorted() 驗證
 
+41343122
 1. Benchmark 系統
 measureSort（時間 + memory）
 measureAverage（多次平均）
