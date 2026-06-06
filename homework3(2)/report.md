@@ -746,13 +746,13 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 
 ### 理論時間與空間複雜度
 
-| 排序演算法 | 平均時間複雜度 | 最壞時間複雜度 | 空間複雜度 |
-|------------|----------------|----------------|------------|
-| 插入排序 (Insertion Sort) | O(n^2) | O(n^2) | O(1) |
-| 快速排序 (Median-of-Three Quick Sort) | O(n log n) | O(n^2) | O(log n) |
-| 合併排序 (Merge Sort) | O(n log n) | O(n log n) | O(n) |
-| 堆積排序 (Heap Sort) | O(n log n) | O(n log n) | O(1) |
-| 複合排序 (Composite Sort) | O(n log n) | O(n log n) | O(1) |
+| 排序演算法 | 最佳時間複雜度 | 平均時間複雜度 | 最壞時間複雜度 | 空間複雜度 |
+|------------|----------------|----------------|----------------|------------|
+| 插入排序 (Insertion Sort) | O(n) | O(n^2) | O(n^2) | O(1) |
+| 快速排序 (Median-of-Three Quick Sort) | O(n log n) | O(n log n) | O(n^2) | O(log n) |
+| 合併排序 (Merge Sort) | O(n log n) | O(n log n) | O(n log n) | O(n) |
+| 堆積排序 (Heap Sort) | O(n log n) | O(n log n) | O(n log n) | O(1) |
+| 複合排序 (Composite Sort) | O(n) | O(n log n) | O(n log n) | O(n) |
 
 ---
 
