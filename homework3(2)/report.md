@@ -918,6 +918,8 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 
 分析其在不同資料規模與不同輸入型態下的效能表現，並結合理論複雜度與實測結果進行驗證。
 
+---
+
 ### Sorting的選擇
 - Insertion Sort 在資料量較大時效能明顯下降，符合其 O(n²) 的理論特性
 
@@ -943,6 +945,8 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 使得效能分析更貼近實務環境中的隨機性，而非僅限於理論構造輸入。
 
 本實驗不僅驗證了各排序演算法的時間與空間特性，也透過 benchmark 架構建立一套可重複、可擴充的測試流程。
+
+---
 
 ## 申論及開發報告
 
