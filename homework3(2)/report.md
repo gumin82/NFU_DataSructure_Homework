@@ -38,6 +38,29 @@
 Merge Sort 在 Best Case、Average Case 與 Worst Case 下皆能維持穩定的時間複雜度。
 
 ---
+### Heap Sort
+Heap Sort（堆積排序）利用 Heap（堆積）資料結構完成排序。本作業使用 Max Heap
+
+其流程如下：
+
+- 建立 Max Heap
+- 將根節點（最大值）與最後一個元素交換
+- 重新調整 Heap
+- 重複執行直到排序完成
+
+Heap Sort 不需要額外的大量記憶體，因此具有良好的空間效率。
+
+---
+### Composite Sort
+Composite Sort（混合排序）結合多種排序演算法的優點，依據資料規模選擇最適合的排序方法。
+
+本作業設計如下：
+
+- n ≤ 32：使用 Insertion Sort
+- 32 < n ≤ 1500：使用 Quick Sort
+- n > 1500：使用 Merge Sort
+
+透過此方式，希望能兼顧小型資料的低成本排序以及大型資料的高效率排序，達到較佳的整體效能。
 ### 解題策略
 ### Graph 作業解題策略
 
