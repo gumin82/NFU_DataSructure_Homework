@@ -762,15 +762,15 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 
 ### 理論分析說明
 
-從理論結果可以看出，Insertion Sort 在資料量增加時會呈現明顯的二次成長，因此在 n 較大時效能最差。
+*Insertion Sort* 在資料量增加時會呈現明顯的二次成長，因此在 n 較大時效能最差。
 
-Quick Sort 在平均情況下表現良好，但若 pivot 選擇不佳，最壞情況會退化為 O(n^2)。本實作採用 median-of-three 改善 pivot 選擇，使平均效能更穩定。
+*Quick Sort* 在平均情況下表現良好，但若 pivot 選擇不佳，最壞情況會退化為 O(n^2)。本實作採用 median-of-three 改善 pivot 選擇，使平均效能更穩定。
 
-Merge Sort 在本實作為 iterative 版本，維持穩定 O(n log n) 的時間複雜度，但需要額外 O(n) 的輔助空間。
+*Merge Sort* 在本實作為 iterative 版本，維持穩定 O(n log n) 的時間複雜度，但需要額外 O(n) 的輔助空間。
 
-Heap Sort 在建立堆與調整過程中維持 O(n log n)，且不需額外大規模記憶體，因此在空間效率上較佳。
+*Heap Sort* 在建立堆與調整過程中維持 O(n log n)，且不需額外大規模記憶體，因此在空間效率上較佳。
 
-Composite Sort 則根據輸入大小動態選擇排序方式：
+*Composite Sort* 則根據輸入大小動態選擇排序方式：
 - n ≤ 32 使用 Insertion Sort
 - 32 < n ≤ 1500 使用 Quick Sort
 - n > 1500 使用 Merge Sort
