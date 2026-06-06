@@ -38,8 +38,6 @@ struct SortRecord
 };
 
 //========================
-// Fastest record
-//========================
 struct FastestRecord
 {
     int n;
@@ -62,8 +60,6 @@ size_t getMemoryKB()
 #endif
 }
 
-//========================
-// correctness check
 //========================
 bool isSorted(int arr[], int n)
 {
@@ -98,7 +94,17 @@ void generateAverageCase(int arr[], int n)
 }
 
 //========================
-// copy
+// random for WORST SEARCH
+//========================
+void generateRandomCase(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+        arr[i] = i + 1;
+
+    for (int i = n - 1; i > 0; i--)
+        swap(arr[i], arr[rand() % (i + 1)]);
+}
+
 //========================
 void copyArray(int src[], int dst[], int n)
 {
@@ -107,7 +113,7 @@ void copyArray(int src[], int dst[], int n)
 }
 
 //========================
-// measure (TIME + MEMORY)
+// measure single run
 //========================
 pair<double, size_t> measureSort(void (*sortFunc)(int[], int), int arr[], int n)
 {
@@ -131,6 +137,71 @@ pair<double, size_t> measureSort(void (*sortFunc)(int[], int), int arr[], int n)
 }
 
 //========================
+// average multi-run
+//========================
+pair<double, size_t> measureAverage(void (*sortFunc)(int[], int), int arr[], int n, int trials)
+{
+    double totalTime = 0;
+    size_t totalMem = 0;
+
+    int* temp = new int[n];
+
+    for (int i = 0; i < trials; i++)
+    {
+        copyArray(arr, temp, n);
+
+        size_t memBefore = getMemoryKB();
+        auto start = high_resolution_clock::now();
+
+        sortFunc(temp, n);
+
+        auto end = high_resolution_clock::now();
+        size_t memAfter = getMemoryKB();
+
+        double timeUs = duration_cast<microseconds>(end - start).count();
+
+        totalTime += timeUs;
+
+        totalMem += (memAfter > memBefore)
+            ? (memAfter - memBefore)
+            : (memBefore - memAfter);
+    }
+
+    delete[] temp;
+
+    return { totalTime / trials, totalMem / trials };
+}
+
+//========================
+// worst case search (random)
+//========================
+pair<double, size_t> measureWorstSearch(void (*sortFunc)(int[], int), int arr[], int n, int trials)
+{
+    double worstTime = -1;
+    size_t mem = 0;
+
+    int* temp = new int[n];
+
+    for (int i = 0; i < trials; i++)
+    {
+        generateRandomCase(arr, n);
+        copyArray(arr, temp, n);
+
+        auto r = measureSort(sortFunc, temp, n);
+
+        if (r.first > worstTime)
+        {
+            worstTime = r.first;
+            mem = r.second;
+        }
+    }
+
+    delete[] temp;
+
+    return { worstTime, mem };
+}
+
+//========================
 // CSV
 //========================
 void writeCSV(const vector<SortRecord>& records)
@@ -146,7 +217,6 @@ void writeCSV(const vector<SortRecord>& records)
             << r.timeMicroseconds << ","
             << r.memoryKB << "\n";
     }
-    fout.close();
 }
 
 //========================
@@ -160,6 +230,9 @@ int main()
     vector<FastestRecord> fastestTable;
 
     int testSize[] = { 500,1000,2000,3000,4000,5000 };
+
+    const int AVG_TRIAL = 10;
+    const int WORST_TRIAL = 20;
 
     cout << "=============================\n";
     cout << "Sorting Benchmark (Time + Memory)\n";
@@ -176,78 +249,49 @@ int main()
 
         for (int c = 0; c < 3; c++)
         {
-            if (c == 0) generateBestCase(original, n);
-            else if (c == 1) generateAverageCase(original, n);
-            else generateWorstCase(original, n);
-
-            cout << "\nN=" << n << " Case=" << cases[c] << "\n";
-
             string bestName = "";
             double bestTime = 1e18;
 
-            //========================
-            // Insertion
-            //========================
-            copyArray(original, data, n);
-            auto r = measureSort(insertionSort, data, n);
+            if (c == 0) generateBestCase(original, n);
+            else if (c == 1) generateAverageCase(original, n);
 
-            cout << "Insertion : " << r.first << " us | " << r.second << " KB\n";
-            records.push_back({ n, cases[c], "InsertionSort", r.first, r.second });
+            cout << "\nN=" << n << " Case=" << cases[c] << "\n";
 
-            if (r.first < bestTime)
-                bestTime = r.first, bestName = "InsertionSort";
+            auto runAlgo = [&](string name, void (*func)(int[], int))
+                {
+                    pair<double, size_t> r;
 
-            //========================
-            // Quick
-            //========================
-            copyArray(original, data, n);
-            r = measureSort(quickSort, data, n);
+                    if (c == 0)
+                    {
+                        copyArray(original, data, n);
+                        r = measureSort(func, data, n);
+                    }
+                    else if (c == 1)
+                    {
+                        r = measureAverage(func, original, n, AVG_TRIAL);
+                    }
+                    else
+                    {
+                        r = measureWorstSearch(func, original, n, WORST_TRIAL);
+                    }
 
-            cout << "Quick     : " << r.first << " us | " << r.second << " KB\n";
-            records.push_back({ n, cases[c], "QuickSort", r.first, r.second });
+                    cout << name << " : " << r.first << " us | " << r.second << " KB\n";
 
-            if (r.first < bestTime)
-                bestTime = r.first, bestName = "QuickSort";
+                    records.push_back({ n, cases[c], name, r.first, r.second });
 
-            //========================
-            // Merge
-            //========================
-            copyArray(original, data, n);
-            r = measureSort(mergeSort, data, n);
+                    if (r.first < bestTime)
+                    {
+                        bestTime = r.first;
+                        bestName = name;
+                    }
+                };
 
-            cout << "Merge     : " << r.first << " us | " << r.second << " KB\n";
-            records.push_back({ n, cases[c], "MergeSort", r.first, r.second });
+            runAlgo("InsertionSort", insertionSort);
+            runAlgo("QuickSort", quickSort);
+            runAlgo("MergeSort", mergeSort);
+            runAlgo("HeapSort", heapSort);
+            runAlgo("CompositeSort", compositeSort);
 
-            if (r.first < bestTime)
-                bestTime = r.first, bestName = "MergeSort";
-
-            //========================
-            // Heap
-            //========================
-            copyArray(original, data, n);
-            r = measureSort(heapSort, data, n);
-
-            cout << "Heap      : " << r.first << " us | " << r.second << " KB\n";
-            records.push_back({ n, cases[c], "HeapSort", r.first, r.second });
-
-            if (r.first < bestTime)
-                bestTime = r.first, bestName = "HeapSort";
-
-            //========================
-            // Composite
-            //========================
-            copyArray(original, data, n);
-            r = measureSort(compositeSort, data, n);
-
-            cout << "Composite : " << r.first << " us | " << r.second << " KB\n";
-            records.push_back({ n, cases[c], "CompositeSort", r.first, r.second });
-
-            if (r.first < bestTime)
-                bestTime = r.first, bestName = "CompositeSort";
-
-            //========================
-            // fastest summary
-            //========================
             fastestTable.push_back({ n, cases[c], bestName, bestTime });
         }
 
