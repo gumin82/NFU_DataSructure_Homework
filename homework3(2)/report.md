@@ -733,6 +733,9 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 程式同時記錄每次排序的執行時間（microseconds）與記憶體使用量（KB）。
 
 最後將結果輸出為 CSV 檔，方便後續繪圖與數據分析比較。
+
+---
+
 ## 效能分析
 
 本實驗比較五種排序演算法：
@@ -742,6 +745,7 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 - Merge Sort
 - Heap Sort
 - Composite Sort
+
 在不同資料規模（n = 500 ~ 5000）下的執行時間與記憶體使用情況。
 
 ### 理論時間與空間複雜度
