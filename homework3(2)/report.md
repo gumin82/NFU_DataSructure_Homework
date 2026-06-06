@@ -26,6 +26,18 @@
 - 分別遞迴排序左右子區間
 
 ---
+### Merge Sort
+本作業採用 Iterative Merge Sort（迭代式 Merge Sort），利用 Bottom-Up 的方式逐步合併區間，避免遞迴呼叫所產生的額外負擔。
+
+其作法為：
+
+- 將資料切分成較小區間
+- 個別排序
+- 將兩個已排序區間合併
+
+Merge Sort 在 Best Case、Average Case 與 Worst Case 下皆能維持穩定的時間複雜度。
+
+---
 ### 解題策略
 ### Graph 作業解題策略
 
