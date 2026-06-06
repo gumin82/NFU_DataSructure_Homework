@@ -926,10 +926,8 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 - Merge Sort 與 Heap Sort 則整體維持穩定的 O(n log n) 表現，適合作為大型資料排序的基準方法。
 
 - Composite Sort 透過依據資料規模動態選擇不同排序策略
-
-使其在小型資料時保有 Insertion Sort 的效率優勢
-
-在中大型資料時則切換至 Quick Sort 或 Merge Sort，以達到整體效能平衡的效果。
+- - 使其在小型資料時保有 Insertion Sort 的效率優勢
+- - 在中大型資料時則切換至 Quick Sort 或 Merge Sort，以達到整體效能平衡的效果。
 
 ---
 
