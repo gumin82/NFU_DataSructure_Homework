@@ -142,6 +142,11 @@ void insertionSort(int arr[], int n)
     }
 }
 ```
+- 插入排序是一種逐步建構有序序列的演算法。
+- 每次將一個元素插入到前面已排序區間的正確位置。
+- 適合小型或接近排序完成的資料。
+
+
 
 **Quick Sort（快速排序）**
 ```cpp
@@ -224,6 +229,12 @@ void quickSort(int arr[],int n)
     quickSortRecursive(arr,0,n-1);
 }
 ```
+- 快速排序採用分治法，選擇 pivot 將資料分割成左右兩部分。
+- 左側小於 pivot，右側大於 pivot，再遞迴排序。
+- 平均時間效率高，但最差情況可能退化為 O(n²)。
+
+
+
 **Merge Sort（合併排序）**
 ```cpp
 //41343133
@@ -293,6 +304,12 @@ void mergeSort(int arr[],int n)
     delete[] temp;
 }
 ```
+- 合併排序採用分治法，將陣列遞迴切分成子序列。
+- 再將已排序的子序列逐步合併成完整排序結果。
+- 時間穩定為 O(n log n)，但需要額外記憶體。
+
+
+
 **Heap Sort（堆積排序）**
 ```cpp
 //41343133
@@ -345,6 +362,12 @@ void heapSort(int arr[],int n)
     }
 }
 ```
+- 堆積排序利用最大堆或最小堆結構進行排序。
+- 先建立 heap，再反覆取出 root 並重新調整堆。
+- 時間複雜度穩定為 O(n log n)，不需額外記憶體。
+
+
+
 **Composite Sort（混合排序）**
 ```cpp
 //41343133
@@ -370,6 +393,12 @@ void compositeSort(int arr[], int n)
     }
 }
 ```
+- 混合排序根據資料大小選擇不同排序方法。
+- 小資料使用 insertion sort，中型使用 quick sort，大型使用 merge sort。
+- 用於提升整體實務效能。
+
+
+
 **Benchmark 效能測試**
 ```cpp
 //41343133
@@ -689,6 +718,21 @@ int main()
     return 0;
 }
 ```
+本實驗針對五種排序演算法進行效能比較分析，並在不同輸入規模（500 至 5000）下測試執行時間與記憶體使用量。
+
+實驗分為三種輸入情境：Best Case、Average Case 與 Worst Case。
+
+Best Case 使用已排序資料，觀察演算法在最佳情況下的表現。
+
+Average Case 使用隨機資料，並重複多次實驗取平均值，以降低單次測試誤差。
+
+Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機輸入進行多次測試，選取執行時間最長者作為最差情況。
+
+此方法屬於「實驗式 worst-case 搜尋」，用以模擬實務上最不利輸入。
+
+程式同時記錄每次排序的執行時間（microseconds）與記憶體使用量（KB）。
+
+最後將結果輸出為 CSV 檔，方便後續繪圖與數據分析比較。
 ## 效能分析
 
 | 演算法                    | 時間複雜度      | 空間複雜度    |
