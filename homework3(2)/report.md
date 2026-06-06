@@ -915,29 +915,32 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 - Merge Sort
 - Heap Sort
 - Composite Sort
+
 分析其在不同資料規模與不同輸入型態下的效能表現，並結合理論複雜度與實測結果進行驗證。
 
-從實驗結果可以觀察到
+### Sorting的選擇
+- Insertion Sort 在資料量較大時效能明顯下降，符合其 O(n²) 的理論特性
 
-Insertion Sort 在資料量較大時效能明顯下降，符合其 O(n²) 的理論特性
+- Quick Sort 在平均情況下表現良好，但在特定輸入情境下仍可能退化
 
-Quick Sort 在平均情況下表現良好，但在特定輸入情境下仍可能退化
+- Merge Sort 與 Heap Sort 則整體維持穩定的 O(n log n) 表現，適合作為大型資料排序的基準方法。
 
-Merge Sort 與 Heap Sort 則整體維持穩定的 O(n log n) 表現，適合作為大型資料排序的基準方法。
-
-Composite Sort 透過依據資料規模動態選擇不同排序策略
+- Composite Sort 透過依據資料規模動態選擇不同排序策略
 
 使其在小型資料時保有 Insertion Sort 的效率優勢
 
 在中大型資料時則切換至 Quick Sort 或 Merge Sort，以達到整體效能平衡的效果。
 
-此外，本實驗設計了 Best Case、Average Case 與 Worst Case 三種測試情境
+---
+
+### 測試情境
+本實驗設計了 Best Case、Average Case 與 Worst Case 三種測試情境
 
 其中 Worst Case 採用隨機搜尋方式近似取得最差輸入結果
 
 使得效能分析更貼近實務環境中的隨機性，而非僅限於理論構造輸入。
 
-整體而言，本實驗不僅驗證了各排序演算法的時間與空間特性，也透過 benchmark 架構建立一套可重複、可擴充的測試流程，為後續進一步的演算法比較與效能優化提供基礎。
+本實驗不僅驗證了各排序演算法的時間與空間特性，也透過 benchmark 架構建立一套可重複、可擴充的測試流程。
 
 ## 申論及開發報告
 
