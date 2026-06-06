@@ -748,8 +748,7 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 
 本實驗比較五種排序演算法：
 - Insertion Sort
-- Median-of-Three
-- Quick Sort
+- Median-of-Three Quick Sort
 - Merge Sort
 - Heap Sort
 - Composite Sort
