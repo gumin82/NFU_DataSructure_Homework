@@ -83,7 +83,7 @@ Composite Sort（混合排序）結合多種排序演算法的優點，依據資
 
 - Insertion Sort
 - Quick Sort (Median-of-Three)
-- Merge Sort (Iterative)
+- Merge Sort 
 - Heap Sort
 - Composite Sort
 
