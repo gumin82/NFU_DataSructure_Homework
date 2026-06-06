@@ -909,8 +909,8 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 若使用 g++ 編譯器，可使用以下指令：
 
 ```bash
-$ g++ -std=c++17 main.cpp -O2 -o sorting_benchmark
-$ ./sorting_benchmark
+ g++ -std=c++17 main.cpp -O2 -o sorting_benchmark
+ ./sorting_benchmark
 ```
 ### 結論
 
