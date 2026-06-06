@@ -106,6 +106,17 @@ Composite Sort 採用混合策略：
 
 希望透過不同排序法的優勢互補，提升整體效能。
 
+實驗設計分為三種情境：
+
+- Best Case
+使用已排序資料作為輸入，觀察各演算法在理想情況下的執行效率。
+- Average Case
+使用隨機亂序資料，並對每組輸入重複執行多次（Multiple Trials），取平均執行時間與記憶體使用量，以降低單次測試誤差。
+- Worst Case（實驗式搜尋）
+對 Merge Sort、Heap Sort 與 Quick Sort 使用大量隨機產生的測資進行測試
+
+透過多次隨機輸入執行，選取其中執行時間最長者作為 Worst Case，用以模擬實務上最不利的輸入情況。
+
 ## 程式實作
 Adjacency Matrix 程式碼：
 
