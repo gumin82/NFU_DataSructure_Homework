@@ -77,6 +77,9 @@ Composite Sort（混合排序）結合多種排序演算法的優點，依據資
 - 記憶體使用量（Memory Usage）
 
 最後將實驗結果輸出為 CSV 檔案，作為後續圖表繪製與效能分析之依據。
+
+---
+
 ## 解題策略
 
 本作業建立 Benchmark 系統分析五種排序演算法：
@@ -117,7 +120,12 @@ Composite Sort 採用混合策略：
 
 透過多次隨機輸入執行，選取其中執行時間最長者作為 Worst Case，用以模擬實務上最不利的輸入情況。
 
+---
+
 ## 程式實作
+
+---
+
 **Insertion Sort（插入排序）**
 ```cpp
 //41343133
@@ -146,7 +154,7 @@ void insertionSort(int arr[], int n)
 - 每次將一個元素插入到前面已排序區間的正確位置。
 - 適合小型或接近排序完成的資料。
 
-
+---
 
 **Quick Sort（快速排序）**
 ```cpp
@@ -233,7 +241,7 @@ void quickSort(int arr[],int n)
 - 左側小於 pivot，右側大於 pivot，再遞迴排序。
 - 平均時間效率高，但最差情況可能退化為 O(n²)。
 
-
+---
 
 **Merge Sort（合併排序）**
 ```cpp
@@ -308,7 +316,7 @@ void mergeSort(int arr[],int n)
 - 再將已排序的子序列逐步合併成完整排序結果。
 - 時間穩定為 O(n log n)，但需要額外記憶體。
 
-
+---
 
 **Heap Sort（堆積排序）**
 ```cpp
@@ -366,7 +374,7 @@ void heapSort(int arr[],int n)
 - 先建立 heap，再反覆取出 root 並重新調整堆。
 - 時間複雜度穩定為 O(n log n)，不需額外記憶體。
 
-
+---
 
 **Composite Sort（混合排序）**
 ```cpp
@@ -397,7 +405,7 @@ void compositeSort(int arr[], int n)
 - 小資料使用 insertion sort，中型使用 quick sort，大型使用 merge sort。
 - 用於提升整體實務效能。
 
-
+---
 
 **Benchmark 效能測試**
 ```cpp
@@ -762,15 +770,15 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 
 ### 理論分析說明
 
-*Insertion Sort* 在資料量增加時會呈現明顯的二次成長，因此在 n 較大時效能最差。
+**Insertion Sort** 在資料量增加時會呈現明顯的二次成長，因此在 n 較大時效能最差。
 
-*Quick Sort* 在平均情況下表現良好，但若 pivot 選擇不佳，最壞情況會退化為 O(n^2)。本實作採用 median-of-three 改善 pivot 選擇，使平均效能更穩定。
+**Quick Sort** 在平均情況下表現良好，但若 pivot 選擇不佳，最壞情況會退化為 O(n^2)。本實作採用 median-of-three 改善 pivot 選擇。
 
-*Merge Sort* 在本實作為 iterative 版本，維持穩定 O(n log n) 的時間複雜度，但需要額外 O(n) 的輔助空間。
+**Merge Sort** 在本實作為 iterative 版本，維持穩定 O(n log n) 的時間複雜度，但需要額外 O(n) 的輔助空間。
 
-*Heap Sort* 在建立堆與調整過程中維持 O(n log n)，且不需額外大規模記憶體，因此在空間效率上較佳。
+**Heap Sort** 在建立堆與調整過程中維持 O(n log n)，且不需額外大規模記憶體，因此在空間效率上較佳。
 
-*Composite Sort* 則根據輸入大小動態選擇排序方式：
+**Composite Sort** 則根據輸入大小動態選擇排序方式：
 - n ≤ 32 使用 Insertion Sort
 - 32 < n ≤ 1500 使用 Quick Sort
 - n > 1500 使用 Merge Sort
@@ -794,6 +802,8 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 ### CSV 輸出格式說明
 
 實驗結果會輸出至 `sorting_result.csv`，採用 long-format（長表格式）：
+
+---
 
 ## 測試與驗證
 
@@ -847,14 +857,14 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 
 每一次排序測試的標準流程如下：
 
-- 1. 依據 Case 生成對應測試資料（Best / Average / Worst）
-- 2. 將原始資料複製至測試陣列（避免污染原始資料）
-- 3. 呼叫對應排序演算法進行排序
-- 4. 記錄執行時間（microseconds）
-- 5. 讀取記憶體使用量（KB）
-- 6. 驗證排序結果正確性
-- 7. 將結果寫入 CSV 檔案
-- 8. 重複以上流程直到所有 n 與演算法完成
+1. 依據 Case 生成對應測試資料（Best / Average / Worst）
+2. 將原始資料複製至測試陣列（避免污染原始資料）
+3. 呼叫對應排序演算法進行排序
+4. 記錄執行時間（microseconds）
+5. 讀取記憶體使用量（KB）
+6. 驗證排序結果正確性
+7. 將結果寫入 CSV 檔案
+8. 重複以上流程直到所有 n 與演算法完成
 
 此流程確保每筆數據皆具備一致的測試條件，使結果可重現且具比較性。
 
@@ -894,40 +904,40 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 
 整體結果可作為排序演算法在不同資料規模下的性能比較依據，並提供後續視覺化分析與效能評估基礎。
 
-## 測試與驗證
-
-### 測試案例
-
-| 測試項目                               | 輸入內容                                                               | 預期輸出                                                                                                             |
-| ---------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| **Adjacency Matrix（含權重 / 無權重）**    | 4 3<br>0 1 5<br>1 2 3<br>2 3 2                                     | 無權重矩陣:<br>0 1 0 0<br>1 0 1 0<br>0 1 0 1<br>0 0 1 0<br><br>有權重矩陣:<br>0 5 0 0<br>5 0 3 0<br>0 3 0 2<br>0 0 2 0     |
-| **Adjacency List（含權重 / 無權重）**      | 4 3<br>0 1 5<br>1 2 3<br>2 3 2                                     | 無權重:<br>0: 1<br>1: 0 2<br>2: 1 3<br>3: 2<br><br>有權重:<br>0: (1,5)<br>1: (0,5) (2,3)<br>2: (1,3) (3,2)<br>3: (2,2) |
-| **Adjacency Multilist（含權重 / 無權重）** | 4 3<br>0 1 5<br>1 2 3<br>2 3 2                                     | 無權重:<br>0: 1<br>1: 0 2<br>2: 1 3<br>3: 2<br><br>有權重:<br>0: (1,5)<br>1: (0,5) (2,3)<br>2: (1,3) (3,2)<br>3: (2,2) |
-| DFS / BFS / Spanning Tree          | 5 4<br>0 1<br>0 2<br>1 3<br>2 4                                    | DFS: 0 1 3 2 4<br>BFS: 0 1 2 3 4<br>Spanning Tree:<br>0-1, 1-3, 0-2, 2-4                                         |
-| Connected Components               | 6 3<br>0 1<br>1 2<br>3 4                                           | Component 1: 0 1 2<br>Component 2: 3 4<br>Component 3: 5                                                         |
-| Kruskal / Prim                | 4 5<br>0 1 5<br>0 2 2<br>1 2 1<br>1 3 3<br>2 3 4                   | MST edges:<br>1-2(1), 0-2(2), 1-3(3)<br>Total cost: 6                                                            |
-| Nonnegative Edge CostsEdge Costs / General WeightsWeights  | 4 5<br>0 1 5<br>0 2 2<br>1 2 1<br>1 3 3<br>2 3 4<br>start=0   | dist[0]=0<br>dist[1]=5<br>dist[2]=2<br>dist[3]=6                                                                 |
-| All-Pairs Shortest Paths                     | 4<br>0 5 2 999<br>999 0 1 3<br>999 999 0 4<br>999 999 999 0        | 0 5 2 6<br>∞ 0 1 3<br>∞ ∞ 0 4<br>∞ ∞ ∞ 0                                                                         |
-| AOV                   | 6 6<br>0 1<br>0 2<br>1 3<br>2 3<br>3 4<br>4 5                      | Topological Order:<br>0 1 2 3 4 5                                                                                |
-| AOE                 | 6 7<br>0 1 3<br>0 2 2<br>1 3 2<br>2 3 1<br>3 4 4<br>4 5 2<br>2 5 6 | Earliest time:<br>v0:0 v1:3 v2:2 v3:5 v4:9 v5:11                                                                 |
-
-
 ---
 
 
 ### 結論
 
-本次作業透過實作多種 Graph 相關資料結構與演算法，使我能夠理解圖在不同情境下的表示方式與應用差異。
+本實驗透過實作與比較五種排序演算法
+- Insertion Sort
+- Median-of-Three Quick Sort
+- Merge Sort
+- Heap Sort
+- Composite Sort
+分析其在不同資料規模與不同輸入型態下的效能表現，並結合理論複雜度與實測結果進行驗證。
 
-從鄰接矩陣、鄰接串列到鄰接多重串列，可以比較不同結構在空間與操作效率上的取捨。
+從實驗結果可以觀察到
 
-在演算法部分，透過 DFS 與 BFS 掌握圖的遍歷方式，並延伸至連通分量、生成樹與雙連通分量等結構分析問題。
+Insertion Sort 在資料量較大時效能明顯下降，符合其 O(n²) 的理論特性
 
-實作最小生成樹與最短路徑演算法，理解 Kruskal、Prim 及 All Destination: Nonnegative Edge CostsEdge Costs、All Destination: General WeightsWeights、All-Pairs Shortest Paths 等方法的適用條件與限制。
+Quick Sort 在平均情況下表現良好，但在特定輸入情境下仍可能退化
 
-最後在 AOV 與 AOE 排程問題中，體會拓撲排序與關鍵路徑在實務專案中的應用。
+Merge Sort 與 Heap Sort 則整體維持穩定的 O(n log n) 表現，適合作為大型資料排序的基準方法。
 
-本作業整體加強了我對圖論架構與問題拆解能力的理解。
+Composite Sort 透過依據資料規模動態選擇不同排序策略
+
+使其在小型資料時保有 Insertion Sort 的效率優勢
+
+在中大型資料時則切換至 Quick Sort 或 Merge Sort，以達到整體效能平衡的效果。
+
+此外，本實驗設計了 Best Case、Average Case 與 Worst Case 三種測試情境
+
+其中 Worst Case 採用隨機搜尋方式近似取得最差輸入結果
+
+使得效能分析更貼近實務環境中的隨機性，而非僅限於理論構造輸入。
+
+整體而言，本實驗不僅驗證了各排序演算法的時間與空間特性，也透過 benchmark 架構建立一套可重複、可擴充的測試流程，為後續進一步的演算法比較與效能優化提供基礎。
 
 ## 申論及開發報告
 
