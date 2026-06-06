@@ -9,6 +9,8 @@
 測試資料規模為 n = 500、1000、2000、3000、4000、5000，並分別針對 Best Case、Average Case 與 Worst Case 進行實驗。
 
 本次作業實作以下五種排序演算法：
+# Insertion Sort
+
 ### 解題策略
 # Graph 作業解題策略
 
