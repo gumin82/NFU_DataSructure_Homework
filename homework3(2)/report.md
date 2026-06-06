@@ -932,7 +932,11 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 ---
 
 ### 測試情境
-本實驗設計了 Best Case、Average Case 與 Worst Case 三種測試情境
+本實驗設計了 
+
+- Best Case
+- Average Case  
+- Worst Case
 
 其中 Worst Case 採用隨機搜尋方式近似取得最差輸入結果
 
