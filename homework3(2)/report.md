@@ -797,6 +797,37 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 
 ## 測試與驗證
 
+本實驗旨在驗證五種排序演算法（Insertion Sort、Median-of-Three Quick Sort、Merge Sort、Heap Sort、Composite Sort）
+
+在不同輸入資料型態與不同資料規模下的正確性與效能表現。
+
+為確保實驗結果具有可靠性，本程式在設計上同時考慮「排序正確性驗證」與「效能量測一致性」，並透過多種資料生成方式進行測試。
+
+---
+
+### 測試資料設計
+
+本實驗使用三種主要輸入資料型態，涵蓋常見排序情境：
+
+| 測試類型 | 資料特性 | 目的 |
+|----------|----------|------|
+| Best Case | 已排序資料（ascending order） | 測試最佳情況下演算法效率 |
+| Average Case | 隨機亂序資料（random shuffle） | 模擬一般實際使用情境 |
+| Worst Case | 隨機資料中挑選最差結果（random search） | 模擬實驗性最差輸入情況 |
+
+其中：
+- Best Case 使用遞增序列生成（如 1,2,3,...,n）
+- Average Case 使用 Fisher-Yates shuffle 產生均勻隨機排列
+- Worst Case 則透過多次隨機輸入測試，選取執行時間最長者作為 worst-case 結果（實驗式 worst-case）
+
+---
+
+### 資料規模設定
+
+為觀察時間成長趨勢，本實驗選用以下測試規模：
+
+## 測試與驗證
+
 ### 測試案例
 
 | 測試項目                               | 輸入內容                                                               | 預期輸出                                                                                                             |
