@@ -1004,4 +1004,42 @@ Composite Sort 則依據資料大小動態選擇不同排序策略，以達到�
 
 透過統一的 benchmark 架構與資料生成規則，使所有演算法在相同輸入條件下進行比較，確保實驗結果具備一致性與可重現性。
 ### 分工部分
-待定
+41343133
+1. 排序演算法實作
+- Insertion Sort
+- Quick Sort（Median-of-Three）
+- Merge Sort（Iterative）
+- Heap Sort
+- Composite Sort
+
+2. 演算法整合
+確保所有排序 function 可以被 benchmark 呼叫
+統一 function prototype
+
+3. Composite Sort 設計
+n ≤ 32 → Insertion
+32 < n ≤ 1500 → Quick
+n > 1500 → Merge
+
+4. correctness check
+isSorted() 驗證
+
+1. Benchmark 系統
+measureSort（時間 + memory）
+measureAverage（多次平均）
+measureWorstSearch（worst-case search）
+
+2. 測試資料生成
+Best Case（sorted）
+Average Case（shuffle）
+Worst Case（random search）
+
+3. CSV / 輸出系統
+writeCSV()
+sorting_result.csv 格式設計
+fastest table 統計
+
+4. 效能分析與圖表
+n = 500 ~ 5000 結果整理
+Best / Average / Worst 比較
+理論 vs 實測分析
