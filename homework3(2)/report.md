@@ -944,7 +944,7 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 
 本實驗不僅驗證了各排序演算法的時間與空間特性，也透過 benchmark 架構建立一套可重複、可擴充的測試流程。
 
-## 申論與開發報告
+## 申論及開發報告
 
 本專案主要目的在於實作並比較五種排序演算法
 - Insertion Sort
