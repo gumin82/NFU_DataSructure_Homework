@@ -77,85 +77,34 @@ Composite Sort（混合排序）結合多種排序演算法的優點，依據資
 - 記憶體使用量（Memory Usage）
 
 最後將實驗結果輸出為 CSV 檔案，作為後續圖表繪製與效能分析之依據。
-### 解題策略
-### Graph 作業解題策略
+## 解題策略
 
-圖的表示法  
-鄰接矩陣：用二維陣列表示點與點關係，適合快速查詢但空間為 O(V^2)，適合稠密圖。  
-鄰接串列：每個點存鄰居列表，空間 O(V+E)，適合遍歷與稀疏圖（本作業主要使用）。  
-鄰接多重串列：邊只存一次並連接兩端點，適合需要操作邊的進階情況。
+本作業建立 Benchmark 系統分析五種排序演算法：
 
----
+- Insertion Sort
+- Quick Sort (Median-of-Three)
+- Merge Sort (Iterative)
+- Heap Sort
+- Composite Sort
 
-DFS（深度優先搜尋）  
-從起點一路深入未訪問節點，走到底再回溯，用於連通分量、生成樹與割點分析。  
-透過遞迴或 stack 實作，適合需要完整探索路徑的問題。
+主要流程如下：
 
----
+1. 產生 Best、Average、Worst Case 測試資料。
+2. 使用 copyArray() 複製資料，避免排序修改原始測資。
+3. 利用 chrono 計算排序執行時間。
+4. 利用 Windows API 量測記憶體使用量。
+5. 每次排序後使用 isSorted() 驗證結果正確性。
+6. 測試 n = 500、1000、2000、3000、4000、5000。
+7. 將結果輸出至 sorting_result.csv。
+8. 統計每個資料規模下最快的排序演算法。
 
-BFS（廣度優先搜尋）  
-使用 queue 逐層擴展節點，先處理距離近的節點。  
-在無權圖中可求最短路徑，適合層級式搜尋問題。
+Composite Sort 採用混合策略：
 
----
+- n ≤ 32：Insertion Sort
+- 32 < n ≤ 1500：Quick Sort
+- n > 1500：Merge Sort
 
-Connected Components（連通分量）  
-對每個未訪問節點執行 DFS/BFS，將可達節點分為同一群。  
-重複直到所有節點訪問完成，即可得到所有連通區塊。
-
----
-
-Spanning Tree（生成樹）  
-在 DFS/BFS 過程中記錄第一次訪問所使用的邊，形成無環且涵蓋所有節點的樹。  
-邊數固定為 V-1。
-
----
-
-Biconnected Components（雙連通分量）  
-使用 DFS 搭配 dfn 與 low 值判斷節點是否為割點。  
-若 low[v] >= dfn[u]，表示 u 為割點，移除會造成圖分裂。
-
----
-
-Kruskal（最小生成樹）  
-將邊依權重排序，依序加入最小邊並用 Union-Find 避免成環。  
-適合稀疏圖，重點在「選邊而不是選點」。
-
----
-
-Prim（最小生成樹）  
-從任一節點開始，每次選擇與目前樹相連的最小邊擴展。  
-使用 priority queue 維護候選邊，適合稠密圖。
-
----
-
-All Destination: Nonnegative Edge CostsEdge Costs（非負最短路徑）  
-每次選擇目前距離最小節點進行擴展並更新鄰居距離。  
-使用 greedy + priority queue，但不能處理負權重。
-
----
-
-All Destination: General WeightsWeights（含負權）  
-對所有邊重複進行 V-1 次鬆弛操作更新距離。  
-可處理負權並能偵測負權環。
-
----
-
-All-Pairs Shortest Paths（全點對最短路徑）  
-透過三層迴圈嘗試每個中繼點是否能縮短任意兩點距離。  
-核心為動態規劃，時間複雜度 O(V^3)。
-
----
-
-AOV（拓撲排序）  
-每次選擇入度為 0 的節點輸出並移除其影響。  
-若無法完成排序代表圖中存在環。
-
----
-
-AOE（關鍵路徑）  
-計算每個節點最早與最晚時間，找出不影響總工期的關鍵邊。  
-關鍵路徑決定專案最短完成時間。
+希望透過不同排序法的優勢互補，提升整體效能。
 
 ## 程式實作
 Adjacency Matrix 程式碼：
