@@ -735,24 +735,61 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 最後將結果輸出為 CSV 檔，方便後續繪圖與數據分析比較。
 ## 效能分析
 
-| 演算法                    | 時間複雜度      | 空間複雜度    |
-| ---------------------- | ---------- | -------- |
-| Adjacency Matrix       | O(1)   | O(V²)    |
-| Adjacency List         | O(V + E)   | O(V + E) |
-| Adjacency Multilist    | O(V + E)   | O(V + E) |
-| DFS                    | O(V + E)   | O(V)     |
-| BFS                    | O(V + E)   | O(V)     |
-| Connected Components   | O(V + E)   | O(V)     |
-| Spanning Tree          | O(V + E)   | O(V)     |
-| Biconnected Components | O(V + E)   | O(V)     |
-| Kruskal’s Algorithm    | O(E log E) | O(V)     |
-| Prim’s Algorithm       | O(E log V) | O(V)     |
-|Nonnegative Edge CostsEdge Costs | O(E log V) | O(V)     |
-| General WeightsWeights   | O(VE)      | O(V)     |
-| All-Pairs Shortest Paths   | O(V³)      | O(V²)    |
-| AOV  | O(V + E)   | O(V)     |
-| AOE     | O(V + E)   | O(V)     |
+本實驗比較五種排序演算法：
+- Insertion Sort
+- Median-of-Three
+- Quick Sort
+- Merge Sort
+- Heap Sort
+- Composite Sort
+在不同資料規模（n = 500 ~ 5000）下的執行時間與記憶體使用情況。
 
+### 理論時間與空間複雜度
+
+| 排序演算法 | 平均時間複雜度 | 最壞時間複雜度 | 空間複雜度 |
+|------------|----------------|----------------|------------|
+| 插入排序 (Insertion Sort) | O(n^2) | O(n^2) | O(1) |
+| 快速排序 (Median-of-Three Quick Sort) | O(n log n) | O(n^2) | O(log n) |
+| 合併排序 (Merge Sort) | O(n log n) | O(n log n) | O(n) |
+| 堆積排序 (Heap Sort) | O(n log n) | O(n log n) | O(1) |
+| 複合排序 (Composite Sort) | O(n log n) | O(n log n) | O(1) |
+
+---
+
+### 理論分析說明
+
+從理論結果可以看出，Insertion Sort 在資料量增加時會呈現明顯的二次成長，因此在 n 較大時效能最差。
+
+Quick Sort 在平均情況下表現良好，但若 pivot 選擇不佳，最壞情況會退化為 O(n^2)。本實作採用 median-of-three 改善 pivot 選擇，使平均效能更穩定。
+
+Merge Sort 在本實作為 iterative 版本，維持穩定 O(n log n) 的時間複雜度，但需要額外 O(n) 的輔助空間。
+
+Heap Sort 在建立堆與調整過程中維持 O(n log n)，且不需額外大規模記憶體，因此在空間效率上較佳。
+
+Composite Sort 則根據輸入大小動態選擇排序方式：
+- n ≤ 32 使用 Insertion Sort
+- 32 < n ≤ 1500 使用 Quick Sort
+- n > 1500 使用 Merge Sort
+
+因此 Composite Sort 的整體行為較接近「混合式分治策略」，而非單一排序演算法。
+
+---
+
+### 實驗結果解讀（Benchmark Design）
+
+本程式採用三種測試模式進行效能分析：
+
+- **Best Case**：使用已排序資料，觀察最佳情況下的執行效率。
+- **Average Case**：使用隨機亂序資料，並重複多次實驗（multiple trials）後取平均值，以降低隨機誤差。
+- **Worst Case（實驗式搜尋）**：對 Merge Sort、Heap Sort 與 Quick Sort 使用大量隨機資料進行測試，並選取其中執行時間最長者作為 worst-case 結果。
+
+此 worst-case 並非理論上建構的極端輸入，而是透過隨機樣本搜尋得到的「實驗最差情況」，用以模擬實務環境下可能遇到的最不利輸入。
+
+---
+
+### CSV 輸出格式說明
+
+實驗結果會輸出至 `sorting_result.csv`，採用 long-format（長表格式）：
 
 ## 測試與驗證
 
