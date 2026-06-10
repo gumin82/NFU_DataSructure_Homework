@@ -755,6 +755,164 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 
 在不同資料規模（n = 500 ~ 5000）下的執行時間與記憶體使用情況。
 
+###執行結果
+
+=============================
+Sorting Benchmark (Time + Memory)
+=============================
+
+N=500 Case=Best
+InsertionSort : 2 us | 4 KB
+QuickSort : 3 us | 0 KB
+MergeSort : 12 us | 0 KB
+HeapSort : 41 us | 0 KB
+CompositeSort : 3 us | 0 KB
+
+N=500 Case=Average
+InsertionSort : 67.2 us | 0 KB
+QuickSort : 9.6 us | 0 KB
+MergeSort : 18.1 us | 0 KB
+HeapSort : 35.7 us | 0 KB
+CompositeSort : 8.9 us | 0 KB
+
+N=500 Case=Worst
+InsertionSort : 114 us | 0 KB
+QuickSort : 23 us | 0 KB
+MergeSort : 30 us | 0 KB
+HeapSort : 51 us | 0 KB
+CompositeSort : 22 us | 0 KB
+
+N=1000 Case=Best
+InsertionSort : 1 us | 0 KB
+QuickSort : 6 us | 0 KB
+MergeSort : 27 us | 0 KB
+HeapSort : 98 us | 0 KB
+CompositeSort : 6 us | 0 KB
+
+N=1000 Case=Average
+InsertionSort : 306.4 us | 0 KB
+QuickSort : 26.5 us | 0 KB
+MergeSort : 54.3 us | 0 KB
+HeapSort : 102.8 us | 0 KB
+CompositeSort : 25.7 us | 0 KB
+
+N=1000 Case=Worst
+InsertionSort : 432 us | 0 KB
+QuickSort : 51 us | 0 KB
+MergeSort : 97 us | 0 KB
+HeapSort : 210 us | 0 KB
+CompositeSort : 75 us | 0 KB
+
+N=2000 Case=Best
+InsertionSort : 2 us | 0 KB
+QuickSort : 13 us | 0 KB
+MergeSort : 63 us | 8 KB
+HeapSort : 225 us | 0 KB
+CompositeSort : 57 us | 0 KB
+
+N=2000 Case=Average
+InsertionSort : 1056.6 us | 0 KB
+QuickSort : 83.4 us | 0 KB
+MergeSort : 122.5 us | 0 KB
+HeapSort : 222.5 us | 0 KB
+CompositeSort : 141.2 us | 0 KB
+
+N=2000 Case=Worst
+InsertionSort : 1709 us | 0 KB
+QuickSort : 119 us | 0 KB
+MergeSort : 137 us | 0 KB
+HeapSort : 295 us | 0 KB
+CompositeSort : 169 us | 0 KB
+
+N=3000 Case=Best
+InsertionSort : 3 us | 0 KB
+QuickSort : 20 us | 0 KB
+MergeSort : 102 us | 12 KB
+HeapSort : 294 us | 0 KB
+CompositeSort : 87 us | 0 KB
+
+N=3000 Case=Average
+InsertionSort : 2234 us | 0 KB
+QuickSort : 174.8 us | 0 KB
+MergeSort : 241.1 us | 1 KB
+HeapSort : 363.7 us | 0 KB
+CompositeSort : 203.5 us | 0 KB
+
+N=3000 Case=Worst
+InsertionSort : 2935 us | 0 KB
+QuickSort : 172 us | 0 KB
+MergeSort : 278 us | 0 KB
+HeapSort : 454 us | 0 KB
+CompositeSort : 310 us | 0 KB
+
+N=4000 Case=Best
+InsertionSort : 9 us | 0 KB
+QuickSort : 29 us | 0 KB
+MergeSort : 278 us | 16 KB
+HeapSort : 484 us | 0 KB
+CompositeSort : 132 us | 16 KB
+
+N=4000 Case=Average
+InsertionSort : 4549.8 us | 0 KB
+QuickSort : 247.5 us | 0 KB
+MergeSort : 284.2 us | 1 KB
+HeapSort : 460.3 us | 0 KB
+CompositeSort : 290.1 us | 0 KB
+
+N=4000 Case=Worst
+InsertionSort : 6678 us | 0 KB
+QuickSort : 246 us | 0 KB
+MergeSort : 386 us | 0 KB
+HeapSort : 1088 us | 0 KB
+CompositeSort : 456 us | 0 KB
+
+N=5000 Case=Best
+InsertionSort : 6 us | 0 KB
+QuickSort : 35 us | 0 KB
+MergeSort : 279 us | 28 KB
+HeapSort : 608 us | 0 KB
+CompositeSort : 171 us | 20 KB
+
+N=5000 Case=Average
+InsertionSort : 6417.8 us | 0 KB
+QuickSort : 315.1 us | 0 KB
+MergeSort : 378.2 us | 0 KB
+HeapSort : 603.9 us | 0 KB
+CompositeSort : 478.4 us | 0 KB
+
+N=5000 Case=Worst
+InsertionSort : 6725 us | 0 KB
+QuickSort : 367 us | 0 KB
+MergeSort : 580 us | 0 KB
+HeapSort : 705 us | 0 KB
+CompositeSort : 573 us | 0 KB
+
+========== FASTEST TABLE ==========
+n=500 case=Best fastest=InsertionSort time=2 us
+n=500 case=Average fastest=CompositeSort time=8.9 us
+n=500 case=Worst fastest=CompositeSort time=22 us
+n=1000 case=Best fastest=InsertionSort time=1 us
+n=1000 case=Average fastest=CompositeSort time=25.7 us
+n=1000 case=Worst fastest=QuickSort time=51 us
+n=2000 case=Best fastest=InsertionSort time=2 us
+n=2000 case=Average fastest=QuickSort time=83.4 us
+n=2000 case=Worst fastest=QuickSort time=119 us
+n=3000 case=Best fastest=InsertionSort time=3 us
+n=3000 case=Average fastest=QuickSort time=174.8 us
+n=3000 case=Worst fastest=QuickSort time=172 us
+n=4000 case=Best fastest=InsertionSort time=9 us
+n=4000 case=Average fastest=QuickSort time=247.5 us
+n=4000 case=Worst fastest=QuickSort time=246 us
+n=5000 case=Best fastest=InsertionSort time=6 us
+n=5000 case=Average fastest=QuickSort time=315.1 us
+n=5000 case=Worst fastest=QuickSort time=367 us
+
+Saved: sorting_result.csv
+
+C:\Users\User\Desktop\homeworkDE\Test\x64\Debug\Test.exe (流程 14532) 已結束，代碼為 0 (0x0)。
+若要在偵錯停止時自動關閉主控台，請啟用 [工具] -> [選項] -> [偵錯] -> [偵錯停止時，自動關閉主控台]。
+按任意鍵關閉此視窗…
+
 ### 理論時間與空間複雜度
 
 | 排序演算法 | 最佳時間複雜度 | 平均時間複雜度 | 最壞時間複雜度 | 空間複雜度 |
