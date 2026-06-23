@@ -755,7 +755,7 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 
 在不同資料規模（n = 500 ~ 5000）下的執行時間與記憶體使用情況。
 
-###執行結果
+### 執行結果
 
 =============================
 Sorting Benchmark (Time + Memory)
