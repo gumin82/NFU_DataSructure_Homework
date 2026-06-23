@@ -757,6 +757,7 @@ Worst Case 則針對 Merge Sort、Heap Sort 與 Quick Sort，透過大量隨機�
 
 ### 執行結果
 
+---
 
 ## Sorting Benchmark (Time + Memory)
 
